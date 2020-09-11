@@ -120,7 +120,7 @@ class _MainContentState extends State<MainContent> {
                 color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ),
-        AudioItem(),
+        PodcastList(),
       ],
     );
   }

@@ -12,20 +12,20 @@ class PlayerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = Provider.of<AudioProvider>(context, listen: false).selectedItem;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(p.title),
-      ),
-      body: ListView(
-        children: [
-          Padding(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(p.title),
+        ),
+        body: Container(
+          child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: 220.0,
-                  width: 200,
+                  height: 250.0,
+                  width: 210,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: NetworkImage(
@@ -39,12 +39,13 @@ class PlayerPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SingleChildScrollView(child: Text(p.description)),
-                AudioControls(),
+                Flexible( flex: 2,
+                    child: SingleChildScrollView(child: Text(p.description))),
               ],
             ),
           ),
-        ],
+        ),
+        bottomNavigationBar: AudioControls(),
       ),
     );
   }

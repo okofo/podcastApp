@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 
 class AudioProvider extends ChangeNotifier {
-final _url = 'https://itsallwidgets.com/podcast/feed';
+final _url = 'http://feeds.bbci.co.uk/news/rss.xml';
 
   RssFeed _feed;
   RssItem _selectedItem;

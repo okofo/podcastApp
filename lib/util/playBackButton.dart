@@ -45,47 +45,55 @@ class _AudioControlsState extends State<AudioControls> {
   Widget build(BuildContext context) {
     final p = Provider.of<AudioProvider>(context, listen: false).selectedItem;
 
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            IconButton(
-              iconSize: 16,
-              icon: Icon(Icons.fast_rewind),
-              onPressed: () {},
-            ),
-            IconButton(
-              iconSize: 16,
-              icon: _isPlaying
-                  ? Icon(
-                      CupertinoIcons.pause_solid,
-                      color: Colors.black,
-                    )
-                  : Icon(
-                      CupertinoIcons.play_arrow_solid,
-                      color: Colors.black,
-                    ),
-              onPressed: () {
-                if (_isPlaying) {
-                  _stop();
-                } else {
-                  _play(p.guid);
-                }
-              },
-            ),
-            IconButton(
-              iconSize: 16,
-              icon: Icon(Icons.fast_forward),
-              onPressed: () {},
-            ),
-          ],
-        ),
-        Slider(
-          value: _playPosition,
-          onChanged: (double value) {},
-        ),
-      ],
+    return Container(
+      height: 100,
+      color: Colors.blue,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                color:Colors.white,
+                iconSize: 16,
+                icon: Icon(Icons.fast_rewind),
+                onPressed: () {},
+              ),
+              IconButton(
+                iconSize: 16,
+                icon: _isPlaying
+                    ? Icon(
+                        CupertinoIcons.pause_solid,
+                        color: Colors.white,
+                      )
+                    : Icon(
+                        CupertinoIcons.play_arrow_solid,
+                        color: Colors.white,
+                      ),
+                onPressed: () {
+                  if (_isPlaying) {
+                    _stop();
+                  } else {
+                    _play(p.guid);
+                  }
+                },
+              ),
+              IconButton(
+                color: Colors.white,
+                iconSize: 16,
+                icon: Icon(Icons.fast_forward),
+                onPressed: () {},
+              ),
+            ],
+          ),
+          Slider(
+            activeColor: Colors.white,
+            inactiveColor: Colors.grey,
+            value: _playPosition,
+            onChanged: (double value) {},
+          ),
+        ],
+      ),
     );
   }
 }

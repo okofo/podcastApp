@@ -10,29 +10,16 @@ class PodcastList extends StatelessWidget {
 
   const PodcastList({Key key, this.rssFeed}) : super(key: key);
 
-  // AudioProvider get p { return Provider.of <AudioProvider>(context , listen: false); }
   @override
   Widget build(BuildContext context) {
-    final p = Provider.of<AudioProvider>(context, listen: false);
-
-    return Container(
-      height: 400,
-      child: ListView.builder(
-        physics: NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: p.feed.items.length,
-        itemBuilder: (context, index) {
-          return Consumer<AudioProvider>(
-            builder: (context, podcast, _) {
-              return podcast.feed != null
-                  ? AudioItem(rssFeed: podcast.feed)
-                  : Center(
-                      child: CircularProgressIndicator(),
-                    );
-            },
-          );
-        },
-      ),
+    return Consumer<AudioProvider>(
+      builder: (context, podcast, _) {
+        return podcast.feed != null
+            ? AudioItem(rssFeed: podcast.feed)
+            : Center(
+                child: CircularProgressIndicator(),
+              );
+      },
     );
   }
 }
@@ -58,7 +45,6 @@ class _AudioItemState extends State<AudioItem> {
           color: color,
           onPressed: onPressed,
         ),
-        //iconSize: 30,
         onPressed: onPressed,
       );
     }
@@ -66,6 +52,7 @@ class _AudioItemState extends State<AudioItem> {
     final p = Provider.of<AudioProvider>(context, listen: false);
 
     return ListView(
+      physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: p.feed.items
           .map(
@@ -113,21 +100,3 @@ class _AudioItemState extends State<AudioItem> {
     );
   }
 }
-/*IconButton(
-                    iconSize: 16,
-                    icon: liked
-                        ? Icon(
-                            CupertinoIcons.heart_solid,
-                            color: Colors.red,
-                          )
-                        : Icon(
-                            CupertinoIcons.heart_solid,
-                            color: Colors.grey,
-                          ),
-                    onPressed: () {
-                      if (liked) {
-                        setState(() => liked = false);
-                      } else {
-                        setState(() => liked = true);
-                      }
-                    }),*/
